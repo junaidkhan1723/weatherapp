@@ -255,7 +255,3 @@ function clearMessage() {
   messageArea.textContent = '';
   messageArea.className = 'message-area'; // Hide message area
 }
-
-export.default = series(scssTask,jsTask,browserSyncServer,watchTask);
-
-exports.build = series(scssTask , jsTask);
