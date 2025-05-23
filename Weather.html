@@ -1,414 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Weather App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap');
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      min-height: 100vh;
-      font-family: 'Montserrat', Arial, sans-serif;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      transition: background 0.5s;
-      background: #222;
-      position: relative;
-      overflow-x: hidden;
- background: linear-gradient(to bottom left, #ff6600 0%, #66ccff 100%);      
-    }
-    .background-art {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-      transition: background 0.5s;
-    }
-    .main-container {
-      z-index: 1;
-      width: 100%;
-      max-width: 400px;
-      margin-top: 40px;
-      position: relative;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    .header h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      margin: 0;
-      color: #fff;
-       text-shadow: 2px 2px #FF0000;
-    }
-    .header p {
-      color: white;
-      font-size: 1rem;
-      margin: 6px 0 0 0;
-      font-weight: bold;
-     text-shadow: 2px 2px brown;
-
-    }
-    .search-bar {
-      display: flex;
-      width: 90%;
-      margin: 30px 0 24px 20px;
-      gap: 10px;
-      justify-content: center;
-      z-index: 2;
-    }
-    .search-bar input {
-      flex: 1;
-      padding: 13px 18px;
-      border-radius: 8px;
-      border: none;
-      background: #232323cc;
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
-      font-family: inherit;
-      transition: background 0.2s;
-    }
-    .search-bar input::placeholder {
-      color: #b0b0b0;
-    }
-    .search-bar button {
-      padding: 0 10px;
-      border-radius: 8px;
-      border: none;
-      background: #444;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .search-bar button:hover {
-      background: #666;
-    }
-    .weather-card {
-     text-align: center;
-      border-radius: 18px;
-      padding: 32px 28px 24px 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 24px;
-      z-index: 2;
-      position: relative;
-    }
-    .weather-location {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 18px;
-      letter-spacing: 0.01em;
-      color: #fff;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.14);
-    }
-    .weather-icon {
-      width: 80px;
-      height: 80px;
-      margin-left: 120px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .weather-temp {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      letter-spacing: -0.03em;
-      color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.18);
-    }
-    .weather-desc {
-      font-size: 1.2rem;
-      color: #e0e0e0;
-      font-weight: 500;
-      margin-bottom: 28px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.10);
-    }
-    .weather-details {
-      display: flex;
-      width: 100%;
-      gap: 18px;
-      justify-content: center;
-    }
-    .weather-detail-box {
-      background: #292929;
-      border-radius: 10px;
-      flex: 1;
-      padding: 18px 0 10px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .weather-detail-box svg {
-      margin-bottom: 8px;
-      color: #b0b0b0;
-    }
-    .weather-detail-label {
-      font-size: 1rem;
-      color: #b0b0b0;
-      margin-bottom: 3px;
-    }
-    .weather-detail-value {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #fff;
-    }
-    @media (max-width: 500px) {
-      .main-container {
-        max-width: 98vw;
-        margin-top: 16px;
-      }
-      .weather-card {
-        padding: 20px 8px 14px 8px;
-      }
-      .weather-details {
-        gap: 8px;
-      }
-      
-    }
-  </style>
+  <title>Animated Weather App</title>
+  <link rel="stylesheet" href="Weather.css">
+  <script src="Weather.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="background-art" id="bgArt"></div>
-  <div class="main-container">
-    <div class="header">
-      <h1>Weather App</h1>
-      <p>Get real-time weather updates</p>
-    </div>
+  <div class="weather-app-container">
     <div class="search-bar">
-      <input type="text" id="cityInput" placeholder="Enter city name...">
-      <button onclick="getWeather()">🔍</button>
+      <input type="text" id="city-input" placeholder="Enter city name">
+      <button id="search-button">Search</button>
     </div>
-    <div id="weatherCard" class="weather-card" style="display:none"></div>
+    
+    <div class="message-area" id="message-area"></div>
+    
+    <div class="weather-display">
+      <div class="location">
+        <h2 id="city-name"></h2>
+        <p id="country-name"></p>
+      </div>
+      
+      <div class="current-conditions">
+        <div class="icon-container" id="icon-container">
+          <!-- Weather icon will be inserted here -->
+        </div>
+        <p class="temperature"><span id="temperature-value"></span>°C</p>
+        <p class="condition-description" id="weather-description"></p>
+      </div>
+      
+      <div class="detailed-info">
+        <p>Wind: <span id="wind-speed"></span> kph</p>
+        <p>Humidity: <span id="humidity-value"></span>%</p>
+      </div>
+    </div>
+    
+    <!-- Animation containers -->
+    <div class="animation-container">
+      <div class="rain-container" id="rain-container"></div>
+      <div class="cloud-container" id="cloud-container"></div>
+    </div>
   </div>
-  <script>
-    const API_KEY = 'a7be8aa56496405da20135347252205';
-
-    // Helper: Set background art based on weather
-    function setBackground(condition, isNight) {
-      const bg = document.getElementById('bgArt');
-      let html = '';
-      // CLEAR
-      if (/clear/i.test(condition) && !isNight) {
-        html = `
-        <svg width="100vw" height="100vh" viewBox="0 0 400 800" style="width:100vw;height:100vh;" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="sky" cx="50%" cy="20%" r="80%">
-              <stop offset="0%" stop-color="#ffe87c"/>
-              <stop offset="100%" stop-color="#6ec6ff"/>
-            </radialGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#sky)"/>
-          <g>
-            <circle cx="80" cy="110" r="40" fill="#ffe87c" stroke="#ffd600" stroke-width="8"/>
-            <!-- Sun rays -->
-            ${[...Array(12)].map((_,i)=>`
-              <rect x="78" y="45" width="4" height="22" fill="#ffd600" transform="rotate(${i*30} 80 110)"/>
-            `).join('')}
-            <!-- Clouds -->
-            <ellipse cx="240" cy="80" rx="38" ry="20" fill="#fff"/>
-            <ellipse cx="270" cy="95" rx="28" ry="16" fill="#fff"/>
-            <ellipse cx="210" cy="95" rx="24" ry="14" fill="#fff"/>
-            <!-- Grass -->
-            <g>
-              <rect x="0" y="700" width="400" height="100" fill="#3fa43b"/>
-              ${[...Array(20)].map((_,i)=>`
-                <rect x="${i*20}" y="${760-Math.random()*40}" width="8" height="${40+Math.random()*30}" rx="4" fill="#2e8b2e" />
-              `).join('')}
-              <!-- Flowers -->
-              <circle cx="60" cy="780" r="8" fill="#fff"/>
-              <circle cx="340" cy="770" r="7" fill="#fff"/>
-              <circle cx="100" cy="790" r="5" fill="#fff"/>
-            </g>
-            <!-- Butterfly -->
-            <g>
-              <ellipse cx="320" cy="180" rx="7" ry="4" fill="#ffb347"/>
-              <ellipse cx="327" cy="182" rx="4" ry="7" fill="#ffb347"/>
-              <circle cx="323" cy="182" r="3" fill="#f08030"/>
-            </g>
-          </g>
-        </svg>
-        `;
-      }
-      // RAIN
-      else if (/rain|drizzle|shower/i.test(condition)) {
-        html = `
-        <svg width="100vw" height="100vh" viewBox="0 0 400 800" style="width:100vw;height:100vh;" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="skyRain" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#4a637d"/>
-              <stop offset="100%" stop-color="#313c4e"/>
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#skyRain)"/>
-          <!-- Clouds -->
-          <ellipse cx="120" cy="100" rx="60" ry="30" fill="#6e7b8b"/>
-          <ellipse cx="200" cy="80" rx="50" ry="25" fill="#a0aec0"/>
-          <ellipse cx="290" cy="110" rx="70" ry="35" fill="#7d8da1"/>
-          <!-- Lightning -->
-          <polygon points="170,140 190,170 180,170 200,200 180,180 190,180" fill="#ffd600" opacity="0.8"/>
-          <!-- Raindrops -->
-          ${[...Array(18)].map((_,i)=>`
-            <ellipse cx="${60+i*18}" cy="${180+Math.random()*420}" rx="3" ry="12" fill="#b5d0f7" opacity="0.8"/>
-          `).join('')}
-          <!-- Grass -->
-          <g>
-            <rect x="0" y="700" width="400" height="100" fill="#3fa43b"/>
-            ${[...Array(20)].map((_,i)=>`
-              <rect x="${i*20}" y="${760-Math.random()*40}" width="8" height="${40+Math.random()*30}" rx="4" fill="#2e8b2e" />
-            `).join('')}
-            <!-- Flowers -->
-            <circle cx="60" cy="780" r="8" fill="#fff"/>
-            <circle cx="340" cy="770" r="7" fill="#fff"/>
-          </g>
-        </svg>
-        `;
-      }
-      // SNOW
-      else if (/snow|sleet|blizzard/i.test(condition)) {
-        html = `
-        <svg width="100vw" height="100vh" viewBox="0 0 400 800" style="width:100vw;height:100vh;" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="skySnow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#d6eaff"/>
-              <stop offset="100%" stop-color="#7fc6f7"/>
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#skySnow)"/>
-          <!-- Clouds -->
-          <ellipse cx="120" cy="100" rx="60" ry="30" fill="#fff"/>
-          <ellipse cx="200" cy="80" rx="50" ry="25" fill="#e0e0e0"/>
-          <ellipse cx="290" cy="110" rx="70" ry="35" fill="#f5f5f5"/>
-          <!-- Snowflakes -->
-          ${[...Array(20)].map((_,i)=>`
-            <g>
-              <circle cx="${40+i*16}" cy="${180+Math.random()*420}" r="${3+Math.random()*3}" fill="#fff" opacity="0.95"/>
-              <line x1="${40+i*16-2}" y1="${180+Math.random()*420-2}" x2="${40+i*16+2}" y2="${180+Math.random()*420+2}" stroke="#fff" stroke-width="1"/>
-              <line x1="${40+i*16+2}" y1="${180+Math.random()*420-2}" x2="${40+i*16-2}" y2="${180+Math.random()*420+2}" stroke="#fff" stroke-width="1"/>
-            </g>
-          `).join('')}
-          <!-- Snow ground -->
-          <ellipse cx="200" cy="800" rx="200" ry="60" fill="#fff"/>
-          <!-- Birds -->
-          <g>
-            <ellipse cx="60" cy="780" rx="12" ry="6" fill="#3c3c3c"/>
-            <ellipse cx="340" cy="770" rx="12" ry="6" fill="#3c3c3c"/>
-            <ellipse cx="60" cy="782" rx="6" ry="3" fill="#ff6f61"/>
-            <ellipse cx="340" cy="772" rx="6" ry="3" fill="#ff6f61"/>
-          </g>
-        </svg>
-        `;
-      }
-      // NIGHT
-      else if (isNight || /night|moon/i.test(condition)) {
-        html = `
-        <svg width="100vw" height="100vh" viewBox="0 0 400 800" style="width:100vw;height:100vh;" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="skyNight" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2c3551"/>
-              <stop offset="100%" stop-color="#1a2138"/>
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#skyNight)"/>
-          <!-- Moon -->
-          <path d="M110 120 A40 40 0 1 0 170 120 A30 30 0 1 1 110 120" fill="#ffe87c"/>
-          <!-- Stars -->
-          ${[...Array(18)].map((_,i)=>`
-            <circle cx="${40+Math.random()*320}" cy="${60+Math.random()*200}" r="${1+Math.random()*2}" fill="#fffde4"/>
-          `).join('')}
-          <!-- Clouds -->
-          <ellipse cx="240" cy="90" rx="38" ry="20" fill="#3e4660" opacity="0.8"/>
-          <ellipse cx="270" cy="110" rx="28" ry="16" fill="#4a5170" opacity="0.8"/>
-          <ellipse cx="210" cy="110" rx="24" ry="14" fill="#3e4660" opacity="0.8"/>
-          <!-- Grass -->
-          <g>
-            <rect x="0" y="700" width="400" height="100" fill="#3fa43b"/>
-            ${[...Array(20)].map((_,i)=>`
-              <rect x="${i*20}" y="${760-Math.random()*40}" width="8" height="${40+Math.random()*30}" rx="4" fill="#2e8b2e" />
-            `).join('')}
-            <!-- Flowers -->
-            <ellipse cx="80" cy="790" rx="6" ry="9" fill="#ffbe30"/>
-            <ellipse cx="320" cy="780" rx="6" ry="9" fill="#ffbe30"/>
-            <ellipse cx="120" cy="795" rx="6" ry="9" fill="#ff6f61"/>
-            <ellipse cx="200" cy="785" rx="6" ry="9" fill="#ffbe30"/>
-          </g>
-        </svg>
-        `;
-      }
-      // DEFAULT fallback
-      else {
-        html = `
-        <svg width="100vw" height="100vh" viewBox="0 0 400 800" style="width:100vw;height:100vh;" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100%" height="100%" fill="#6ec6ff"/>
-        </svg>
-        `;
-      }
-      bg.innerHTML = html;
-    }
-
-    function getWeather() {
-      const city = document.getElementById('cityInput').value.trim();
-      if (!city) return;
-      const card = document.getElementById('weatherCard');
-      card.style.display = 'block';
-      card.innerHTML = `<div style="color:#b0b0b0;text-align:center;">Loading...</div>`;
-      fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${encodeURIComponent(city)}&aqi=yes`)
-        .then(res => {
-          if (!res.ok) throw new Error('City not found');
-          return res.json();
-        })
-        .then(data => {
-          // Set background based on condition
-          setBackground(data.current.condition.text, data.current.is_day === 0);
-          card.innerHTML = `
-            <div class="weather-location">${data.location.name}, ${data.location.country}</div>
-            <div class="weather-icon">
-              <img src="${data.current.condition.icon}" alt="${data.current.condition.text}" width="70" height="70">
-            </div>
-            <div class="weather-temp">${Math.round(data.current.temp_c)}°C</div>
-            <div class="weather-desc">${data.current.condition.text}</div>
-            <div class="weather-details">
-              <div class="weather-detail-box">
-                <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-                <div class="weather-detail-label">Wind</div>
-                <div class="weather-detail-value">${data.current.wind_kph} km/h</div>
-              </div>
-              <div class="weather-detail-box">
-                <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
-                <div class="weather-detail-label">Humidity</div>
-                <div class="weather-detail-value">${data.current.humidity}%</div>
-              </div>
-            </div>
-          `;
-        })
-        .catch(e => {
-          card.innerHTML = `<div style="color:#ff9494;text-align:center;">${e.message}</div>`;
-          setBackground('default', false);
-        });
-    }
-
-    // Set default background on load
-    setBackground('clear', false);
-
-    // Optional: Enter key triggers search
-    document.getElementById('cityInput').addEventListener('keydown', function(e){
-      if(e.key === 'Enter') getWeather();
-    });
-  </script>
 </body>
 </html>
