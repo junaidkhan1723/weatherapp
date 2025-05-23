@@ -1,0 +1,325 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #1a1a1a;
+  color: #f2f2f2;
+  line-height: 1.6;
+}
+
+/* Main container */
+.weather-app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  z-index: 10;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #333;
+  color: #f2f2f2;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  padding: 10px 15px;
+  background: linear-gradient(to top right, #51519f , #372b2b );
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background: linear-gradient(to top left, #2a2ae3 , #b90d0d );
+}
+
+.search-bar input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Message area */
+.message-area {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  display: none;
+}
+
+.message-area.info {
+  background-color: #333;
+  color: #f2f2f2;
+  display: block;
+}
+
+.message-area.error {
+  background-color: #ff5252;
+  color: white;
+  display: block;
+}
+
+/* Weather display */
+.weather-display {
+  background-color: #333;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: none; /* Hidden by default, shown after data fetch */
+  box-shadow: 0 4px 8px rgba(25, 51, 122, 0.3);
+  z-index: 1;
+}
+
+/* Location */
+.location {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.location h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f2f2f2;
+  margin-bottom: 5px;
+}
+
+.location p {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+/* Current conditions */
+.current-conditions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.icon-container {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.temperature {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.condition-description {
+  font-size: 1.2rem;
+  color: #ccc;
+  text-align: center;
+}
+
+/* Detailed info */
+.detailed-info {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 15px;
+  border-top: 1px solid #555;
+}
+
+/* Animation containers */
+.animation-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rain-container,
+.cloud-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Weather icons */
+.sun-icon {
+  width: 100px;
+  height: 100px;
+  fill: #ffcc33;
+}
+
+.cloud-icon {
+  width: 100px;
+  height: 100px;
+  fill: #cccccc;
+}
+
+.rain-icon {
+  width: 100px;
+  height: 100px;
+  fill: #66a3ff;
+}
+
+/* Animations */
+
+/* Sun animation */
+@keyframes sun-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sun-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 204, 51, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.7),
+      0 0 30px rgba(255, 204, 51, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 204, 51, 0.6);
+  }
+}
+
+.sun-icon {
+  animation: sun-rotate 60s linear infinite,
+    sun-glow 4s ease-in-out infinite alternate;
+}
+
+/* Cloud animation */
+@keyframes drift {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(800%);
+  }
+}
+
+.cloud {
+  z-index: 1000;
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: drift linear infinite;
+}
+
+/* Rain animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.raindrop {
+  position: absolute;
+  background: linear-gradient(
+    to bottom,
+    rgba(102, 163, 255, 0),
+    rgba(102, 163, 255, 0.7)
+  );
+  width: 2px;
+  height: 15px;
+  animation: fall linear infinite;
+  border-radius: 0 0 5px 5px;
+}
+
+/* Wind animation */
+@keyframes breeze {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.wind-indicator {
+  animation: breeze 2s ease-in-out infinite alternate;
+  display: inline-block;
+}
+
+/* Responsive design */
+
+@media (min-width: 768px) {
+  .weather-app-container {
+    padding: 40px;
+    max-width: 700px;
+  }
+
+  .weather-display {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "location location"
+      "icon temperature"
+      "description description"
+      "details details";
+    gap: 20px;
+    padding: 30px;
+  }
+
+  .location {
+    grid-area: location;
+  }
+  .icon-container {
+    grid-area: icon;
+  }
+  .temperature {
+    grid-area: temperature;
+    text-align: left;
+    justify-self: center;
+    align-self: center;
+  }
+  .condition-description {
+    grid-area: description;
+  }
+  .detailed-info {
+    grid-area: details;
+  }
+}
