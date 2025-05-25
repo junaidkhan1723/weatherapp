@@ -1,50 +1,54 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Weather App</title>
-  <link rel="stylesheet" href="Weather.css">
-  <script src="Weather.js" defer></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="weather-app-container">
-    <div class="search-bar">
-      <input type="text" id="city-input" placeholder="Enter city name">
-      <button id="search-button">Search</button>
-    </div>
-    
-    <div class="message-area" id="message-area"></div>
-    
-    <div class="weather-display">
-      <div class="location">
-        <h2 id="city-name"></h2>
-        <p id="country-name"></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Underline:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="WeatherApp.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="Weather">
+      <h1>🌞 Weather App ⛅</h1>
+      <div class="weatherSearch">
+        <input type="text" id="city-input" placeholder="Enter City Name" />
+        <button type="button" id="search-button">🔍</button>
       </div>
-      
-      <div class="current-conditions">
-        <div class="icon-container" id="icon-container">
-          <!-- Weather icon will be inserted here -->
+      <p class="error" id="error-msg">City not found. Please try again.</p>
+      <hr />
+      <div class="weatherDetails">
+        <img src="rain.png" alt="weather icon" class="weatherIcon" />
+        <h2 class="weather-condition">Sunny</h2>
+        <h1 class="temp">22&degc</h1>
+        <div class="location">
+          <h2 class="city">Nanded</h2>
+          <h2 class="country">,India</h2>
         </div>
-        <p class="temperature"><span id="temperature-value"></span>°C</p>
-        <p class="condition-description" id="weather-description"></p>
-      </div>
-      
-      <div class="detailed-info">
-        <p>Wind: <span id="wind-speed"></span> kph</p>
-        <p>Humidity: <span id="humidity-value"></span>%</p>
+        <div class="details">
+          <div class="col">
+            <img src="https://cdn-icons-png.flaticon.com/512/966/966390.png" alt="windimg" />
+            <div>
+              <p class="wind">20 km/hr</p>
+              <p>Wind</p>
+            </div>
+          </div>
+
+          <div class="col">
+            <img src="https://cdn-icons-png.flaticon.com/512/7276/7276700.png" />
+            <div>
+              <p class="humidity">50%</p>
+              <p>Humidity</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <!-- Animation containers -->
-    <div class="animation-container">
-      <div class="rain-container" id="rain-container"></div>
-      <div class="cloud-container" id="cloud-container"></div>
-    </div>
-  </div>
-</body>
+
+    <script src="WeatherApp.js"></script>
+  </body>
 </html>
