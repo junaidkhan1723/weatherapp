@@ -2,7 +2,7 @@
 <h2>🌞Author - junaidkhan1723</h2>
 # 🌦️ WeatherApp
 
-A sleek, responsive, and user-friendly Weather App that fetches real-time weather data using the **OpenWeatherMap API**. Built with **HTML5**, **CSS3**, and **JavaScript (ES6+)**, this app provides weather updates for any city worldwide with a modern UI and error handling for invalid entries.
+<strong>A sleek, responsive, and user-friendly Weather App that fetches real-time weather data using the **OpenWeatherMap API**. Built with **HTML5**, **CSS3**, and **JavaScript (ES6+)**, this app provides weather updates for any city worldwide with a modern UI and error handling for invalid entries.</strong>
 
 ![image](https://github.com/user-attachments/assets/01cfc4e8-5073-48d4-bee5-704cb119055d)
 
