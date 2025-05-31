@@ -1,5 +1,5 @@
 # WeatherApp
-<h2>🌞Author - <a href='junaidkhan1723'>junaidkhan1723</h2></a>
+<h2>🌞Author - <a href='https://github.com/junaidkhan1723'>junaidkhan1723</h2></a>
 # 🌦️ WeatherApp
 
 <strong>A sleek, responsive, and user-friendly Weather App that fetches real-time weather data using the **OpenWeatherMap API**. Built with **HTML5**, **CSS3**, and **JavaScript (ES6+)**, this app provides weather updates for any city worldwide with a modern UI and error handling for invalid entries.</strong>
